@@ -5,13 +5,15 @@
 }
 
 :root {
-    --primary-color: hsl(170, 100%, 26%);
+
+    --hue: 290;
+    --primary-color: hsl(var(--hue), 100%, 26%);
     --headline: hsl(210, 11%, 15%);
     --paragraph: hsl(210, 9%, 31%);
     --brand-beige: hsl(39, 100%, 97%);
-    --brand-light: hsl(148, 23%, 89%);
+    --brand-light: hsl(calc(var(--hue) -22), 23%, 89%);
     --bg-light: hsl(180, 14%, 97%);
-    --brand-dark: hsl(170, 100%, 14%);
+    --brand-dark: hsl(var(--hue), 100%, 14%);
 
     --nav-height: 7.2rem;
 
@@ -106,6 +108,29 @@ section .content p{
 
 .button:hover {
     background: var(--brand-dark);
+}
+
+#services .card circle{
+    fill: var(--bg-light);
+}
+
+#navigation .logo-menu path[fill*="#00856F"],
+#backToTopButton circle{
+    fill: var(--primary-color);
+}
+
+button.open-menu path[stroke*="#00856F"],
+#contact li path{
+    stroke: var(--primary-color);
+}
+
+#navigation.scroll button.open-menu path[stroke*="#00856F"]{
+    stroke: #fff;
+}
+
+body.menu-expanded #navigation .logo-menu path,
+#navigation.scroll .logo-menu path{
+    fill: white;
 }
 
 #home {
@@ -227,12 +252,8 @@ body.menu-expanded .menu{
     top: 0;
     left: 0;
     background: var(--primary-color);
-
     width: 100vw;
     height: 100vh;
-
-    padding-top: var(--nav-height);
-
     transition: transform 300ms;
     transform: translateY(0%);
 }
@@ -257,18 +278,24 @@ body.menu-expanded .menu{
 }
 
 .menu .button{
-     background: #FFFFFF;
-     border-radius: 4rem;
-     font-weight: 600;
-     font-size: 1.8rem;
-     line-height: 23px;
-     text-transform: uppercase;
-     color: var(--primary-color);
-     display: inline-block;
-     padding: 1.6rem 3.2rem;
-     text-decoration: none;
-     margin-top: 9rem;
-     margin-bottom: 8rem;
+    background: #FFFFFF;
+    border-radius: 4rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    display: inline-block;
+    padding: 1.6rem 3.2rem;
+    text-decoration: none;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.menu .button:hover{
+    background: var(--primary-color);
+    color: #fff;
+    filter:brightness(1.3);
 }
 
 .social-links{
@@ -360,4 +387,65 @@ body.menu-expanded button path{
     display: flex;
     align-items: center;
     gap: .8rem;
+}
+
+footer{
+    background-color: var(--primary-color);
+    padding-block: 6rem;
+    text-align: left;
+    color: white;
+}
+
+
+footer .logo-menu{
+    display: inline-block;
+    margin-bottom: 2.4rem;
+}
+
+footer .logo-menu svg{
+    width: 23.6rem;
+    height: 3.1rem;
+}
+
+footer .logo-menu path{
+    fill: white;
+}
+
+footer p{
+    color: var(--brand-beige);
+    line-height: 2rem;
+}
+
+footer .links-footer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+footer ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 2.5rem;
+}
+
+footer ul li a:hover{
+    color: var(--brand-dark);
+}
+
+#backToTopButton{
+    position: fixed;
+    bottom: 1rem;
+    right: 2.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: 200ms;
+}
+
+#backToTopButton.show{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0%);
 }
